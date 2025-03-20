@@ -1,0 +1,11 @@
+rawstr = input("Enter a number: ")
+try:
+    ival = int(rawstr)
+except:
+    ival = -1
+
+if ival > 0:
+    print('good job')
+else:
+    print('not a number')        
+#try, except를 사용하여 피요구자가 잘못된 값을 입력하였을 경우 프로그램이 작동을 멈추지 않도록 해당 구문을 사용할 수 있다. 

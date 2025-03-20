@@ -1,0 +1,32 @@
+#미션 2번 - 연봉 계산기
+
+def calculate_year_pay(monthly_payment):
+    year_pay_before_tax = monthly_payment * 12
+    tax_rate = 0.0
+
+    if year_pay_before_tax <= 1200:
+        tax_rate = 0.06
+    elif year_pay_before_tax <= 4600:
+        tax_rate = 0.15
+    elif year_pay_before_tax <= 8800:
+        tax_rate = 0.24
+    elif year_pay_before_tax <= 15000:
+        tax_rate = 0.35
+    elif year_pay_before_tax <= 30000:
+        tax_rate = 0.38
+    elif year_pay_before_tax <= 50000:
+        tax_rate = 0.40
+    else:
+        tax_rate = 0.42
+
+    tax_amount = year_pay_before_tax * tax_rate
+    year_pay_after_tax = year_pay_before_tax - tax_amount
+
+    return year_pay_before_tax, year_pay_after_tax
+
+
+month_pay = int(input("월급 입력: (단위:만원)"))
+year_pay_before_tax, year_pay_after_tax = calculate_year_pay(month_pay)
+
+print("세전 연봉: {}만원".format(year_pay_before_tax))
+print("세후 연봉: {}만원".format(year_pay_after_tax))

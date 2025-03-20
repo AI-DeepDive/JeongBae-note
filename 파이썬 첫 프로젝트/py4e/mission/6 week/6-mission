@@ -1,0 +1,118 @@
+<미션 1>
+
+def find_duplicate_names(korea_king, chosun_king):
+    korea_names = set(korea_king.split(','))
+    chosun_names = set(chosun_king.split(','))
+
+    common_names = korea_names & chosun_names  # Find the intersection of names
+
+    if len(common_names) == 0:
+        print("조선과 고려에 모두 있는 왕 이름이 없습니다.")
+        return
+
+    print("조선과 고려에 모두 있는 왕 이름:")
+    for name in common_names:
+        print("조선과 고려에 모두 있는 왕 이름 :", name)
+
+    print("조선과 고려에 모두 있는 왕 이름은 총 {}개 입니다.".format(len(common_names)))
+
+korea_king = "태조,혜종,정종,광종,경종,성종,목종,현종,덕종,정종,문종,순종,선종,헌종,숙종,예종,인종,의종,명종,신종,희종,강종,고종,원조,충렬왕,충선왕,충숙왕,충혜왕,충목왕,충정왕,공민왕,우왕,창왕,공양왕"
+chosun_king = "태조,정종,태종,세종,문종,단종,세조,예종,성종,연산군,중종,인종,명종,선조,광해군,인조,효종,현종,숙종,경종,영조,정조,순조,헌종,철종,고종,순종"
+
+find_duplicate_names(korea_king, chosun_king)
+
+<미션 2>
+
+def sales_management(member_names, member_records):
+    # Calculate average scores for each member
+    average_scores = [sum(record) / len(record) for record in member_records]
+    
+    # Create a list of (name, average_score) tuples
+    member_info = list(zip(member_names, average_scores))
+    
+    # Sort the list based on average scores in descending order
+    member_info.sort(key=lambda x: x[1], reverse=True)
+    
+    bonus_target = []
+    talk_target = []
+
+    for i, (name, score) in enumerate(member_info):
+        if i < 2:  # Top 2 members are bonus targets
+            if score > 5:  # Exclude if average score is not greater than 5
+                bonus_target.append(name)
+        elif i >= 4:  # Bottom 2 members are talk targets
+            if score <= 3:  # Exclude if average score is greater than 3
+                talk_target.append(name)
+
+    # Print bonus and talk targets
+    print("보너스 대상자", ', '.join(bonus_target))
+    print("면담 대상자", ', '.join(talk_target))
+
+
+# Call the function to manage sales
+sales_management(member_names, member_records)
+
+<미션 3>
+
+def stock_profit(stocks, sells):
+    stock_info = stocks.split(',')
+    stock_data = []
+
+    # Parse stock information and calculate profit
+    for stock in stock_info:
+        name, quantity, buy_price = stock.split('/')
+        quantity = int(quantity)
+        buy_price = int(buy_price)
+        sell_price = sells.pop(0)  # Pop the first sell price for the current stock
+        profit = ((sell_price - buy_price) / buy_price) * 100
+        stock_data.append((name, profit))
+
+    # Sort stock data based on profit in descending order
+    stock_data.sort(key=lambda x: x[1], reverse=True)
+
+    # Print stock profits
+    for name, profit in stock_data:
+        print(f"{name}의 수익률 {profit:.2f}")
+
+
+# Call the function to calculate and print stock profits
+stock_profit(stocks, sells)
+
+<미션 4>
+
+def good_customer(info):
+    info_list = info.split(',')
+    members = []
+
+    for i in range(0, len(info_list), 6):
+        id_, age, phone, gender, location, purchase_count = info_list[i:i + 6]
+
+        if phone == 'x':
+            phone = "000-0000-0000"
+
+        members.append({
+            '아이디': id_,
+            '나이': age,
+            '전화번호': phone,
+            '성별': gender,
+            '지역': location,
+            '구매횟수': int(purchase_count)
+        })
+
+    vip_members = []
+    for member in members:
+        if member['구매횟수'] >= 8 and member['전화번호'] != "000-0000-0000":
+            vip_members.append(member)
+
+    # Print all member info
+    print(vip_members)
+
+    # Print VIP member info for coupon
+    for vip_member in vip_members:
+        print("할인 쿠폰을 받을 회원정보", end=" ")
+        for key, value in vip_member.items():
+            print(f"{key}:{value}", end=", ")
+        print()
+
+# Call the function to find and print VIP members
+good_customer(info)

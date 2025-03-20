@@ -1,0 +1,12 @@
+#가장 큰 숫자를 찾아내기.
+
+large_so_far = -1
+print("before", large_so_far)
+for the_num in [8, 470, 5, 11, 33, 17, 55]:
+    if the_num > large_so_far:
+         large_so_far = the_num
+    print("{}". format(large_so_far))
+    #format 안에 원하는 변수를 넣어줌. 
+    #이전 모델은 print(large_so_far, the_num)으로 두개의 변수를 직접 비교했다면 새 모델은 큰 값만 보여준다.
+
+print("after", large_so_far)

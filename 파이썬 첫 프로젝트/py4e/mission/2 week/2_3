@@ -1,0 +1,42 @@
+# 미션 3번 - 버스 요금 안내
+
+def bus_fare(age, payment_method):    
+    if payment_method == "cash":
+        if age < 8:
+            fare = 0
+        elif 8 <= age < 14:
+            fare = 450
+        elif 14 <= age < 20:
+            fare = 1000
+        elif 20 <= age < 75:
+            fare = 1300
+        else:
+            fare = 0
+    elif payment_method == "card":
+        if age < 8 or age >= 75:
+            fare = 0
+        elif 8 <= age < 14:
+            fare = 450
+        elif 14 <= age < 20:
+            fare = 720
+        else:
+            fare = 1200    
+    else:
+        print("잘못된 지불 방법입니다. cash 또는 card로 입력해주세요.")
+        return
+    
+    print("나이: {}세".format(age))
+    print("지불유형: {}".format(payment_method))
+    print("버스요금: {}원".format(fare))
+
+
+try:
+    age = int(input("나이 입력: "))
+    payment_method = input("지불 방법 입력(cash 또는 card): ")
+
+    bus_fare(age, payment_method)
+except ValueError:
+    print("나이는 숫자로 입력해주세요.")
+
+#지불 방법과 나이에 따라서 지정된 버스 요금을 안내해주는 코드
+#잘못된 입력을 할 경우를 대비하여 try,except를 사용함

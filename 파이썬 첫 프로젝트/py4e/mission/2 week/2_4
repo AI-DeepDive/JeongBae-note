@@ -1,0 +1,48 @@
+#미션 4번 - 컴퓨터와의 가위바위보 게임
+
+import random
+# import random을 선언함으로써 random.choice를 사용할 수 있게 됨.
+
+def rockceaserpaper(user_choice):
+    # 컴퓨터의 선택 생성하기
+    computer_choice = random.choice(["가위", "바위", "보"])
+
+    # 사용자의 선택 출력하기
+    print("나: {}".format(user_choice))
+
+    # 컴퓨터의 선택 출력하기
+    print("컴퓨터: {}".format(computer_choice))
+
+    # 승패 결정하기
+    if user_choice == "가위":
+        if computer_choice == "가위":
+            result = "무승부"
+        elif computer_choice == "바위":
+            result = "컴퓨터 승리!"
+        else:
+            result = "나 승리!"
+    elif user_choice == "바위":
+        if computer_choice == "가위":
+            result = "나 승리!"
+        elif computer_choice == "바위":
+            result = "무승부"
+        else:
+            result = "컴퓨터 승리!"
+    elif user_choice == "보":
+        if computer_choice == "가위":
+            result = "컴퓨터 승리!"
+        elif computer_choice == "바위":
+            result = "나 승리!"
+        else:
+            result = "무승부"
+    else:
+        result = "잘못된 입력입니다. 가위, 바위, 보 중에서 선택해주세요."
+        
+    # 결과 출력하기
+    print(result)
+
+try:
+    my_choice = input("가위 바위 보(택 1): ")
+    rockceaserpaper(my_choice)
+except ValueError:
+    print("가위 바위 보 중에서 선택해주세요.")
